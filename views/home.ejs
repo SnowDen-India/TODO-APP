@@ -1,0 +1,113 @@
+<html>
+    <head>
+          <title>Todo App</title>
+          <link rel="stylesheet" href="/css/style.css">
+          <script src="https://kit.fontawesome.com/ca207b44ca.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+       
+        
+        <div id="list-container">
+          <div id="header">
+          <h1 >TODO APP</h1>
+        </div>
+          <div id="form">
+             <hr>
+            <form action="/create-todo" method="POST">
+                <div id=Description>      
+              <label for="description">Description</label>
+              <input type="text" id="description" name="description" placeholder="what do you need to do ?" required>
+               </div> 
+            <hr>
+
+<!-- category-date-section -->
+            <div id="date-category">
+
+                <!-- Catergory -section -->
+                      <div id="category-container">
+                                   <label for="category">Category</label>
+                                        <select name="category" id="category" required>
+                                                <option value="">Choose a option</option>
+                                                <option value="Personal">Personal</option>
+                                                <option value="Work">Work</option>
+                                                <option value="Shopping">Shopping</option>
+                                                <option value="School">School</option>
+                                                <option value="Other">Other</option>
+                                        
+                                     </select>
+
+                       </div> 
+        <!-- Date -section -->
+                       <div id="Date">
+                               <label for="date">Due date</label>
+                                <input type="date" id="date" name="date" required>
+
+                       </div>
+        
+    </div>
+
+        <!-- buttons -->
+           <div id="button-container">
+                         <button type="submit" id="add-task">
+                                      <i class="fas fa-plus"></i>
+                                          ADD TASK
+                         </button>
+                       
+                         <button type =submit id="delete-task" form="delete-tasks">
+                                    <i class="fas fa-trash-alt"></i>
+                                             DELETE TASK
+                         </button>
+                      
+        </div>
+         </form>
+       
+         <form action="/delete-tasks" method="post" id="delete-tasks">
+
+           <ul>
+            <% for (let i of todo_list) { %>
+              <hr>
+               <li>
+                <div id="task-area">
+                 <div class="checkbox">
+                <input type="checkbox" name="checkbox" value="<%= i._id %>" class="medium-box">
+               </div> 
+                <div class="para"> 
+                  <p><%= i.description %></p>
+                </div>
+     
+                 <div class="date">
+                    <i class="far fa-calendar-alt"></i>
+                    <p class="date-para"><%= i.date %></p>
+                </div>
+                 
+                 <div class="work <%= i.category%>"  id="<%= i.category%>">
+                      <p class="work-para">  <%= i.category %> </p>
+                 </div>
+               
+              </div>
+               </li>
+               <% } %>
+          </ul>
+
+</form>
+
+
+
+
+
+     </div>
+
+            
+ </div>
+
+
+
+
+        
+
+
+    </body>
+
+
+</html>
